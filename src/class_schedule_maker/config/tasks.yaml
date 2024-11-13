@@ -1,8 +1,8 @@
 find_curriculum:
   description: >
-    Find all of the required classes for the program of {major} at {school}
+    Find all of the required classes for the program of {major} at {school} that are not in {previous_classes}
   expected_output: >
-    A list of all the required classes for the program of {major} at {school}
+    A list of all the required classes for the program of {major} at {school} that are not in {previous_classes}
   agent: curriculum_finder
 
 find_professor:
