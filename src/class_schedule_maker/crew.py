@@ -12,40 +12,53 @@ class ClassScheduleMakerCrew():
 	"""ClassScheduleMaker crew"""
 
 	@agent
-	def researcher(self) -> Agent:
+	def curriculum_finder(self) -> Agent:
 		return Agent(
-			config=self.agents_config['researcher'],
+			config=self.agents_config['curriculum_finder'],
 			# tools=[MyCustomTool()], # Example of custom tool, loaded on the beginning of file
 			verbose=True
 		)
 
 	@agent
-	def reporting_analyst(self) -> Agent:
+	def professor_finder(self) -> Agent:
 		return Agent(
-			config=self.agents_config['reporting_analyst'],
+			config=self.agents_config['professor_finder'],
+			verbose=True
+		)
+	
+	@agent
+	def calendar_organizer(self) -> Agent:
+		return Agent(
+			config=self.agents_config['calendar_organizer'],
 			verbose=True
 		)
 
+
 	@task
-	def research_task(self) -> Task:
+	def find_curriculum(self) -> Task:
 		return Task(
-			config=self.tasks_config['research_task'],
+			config=self.tasks_config['find_curriculum'],
 		)
 
 	@task
-	def reporting_task(self) -> Task:
+	def find_professor(self) -> Task:
 		return Task(
-			config=self.tasks_config['reporting_task'],
-			output_file='report.md'
+			config=self.tasks_config['find_professor'],
+		)
+	
+	@task
+	def organize_calendar(self) -> Task:
+		return Task(
+			config=self.tasks_config['organize_calendar'],
+			# output_file='report.md'
 		)
 
 	@crew
 	def crew(self) -> Crew:
 		"""Creates the ClassScheduleMaker crew"""
 		return Crew(
-			agents=self.agents, # Automatically created by the @agent decorator
-			tasks=self.tasks, # Automatically created by the @task decorator
+			agents=self.agents,
+			tasks=self.tasks,
 			process=Process.sequential,
 			verbose=True,
-			# process=Process.hierarchical, # In case you wanna use that instead https://docs.crewai.com/how-to/Hierarchical/
 		)
