@@ -1,11 +1,10 @@
 from crewai import Agent, Crew, Process, Task
 from crewai.project import CrewBase, agent, crew, task
 
-# Uncomment the following line to use an example of a custom tool
 # from class_schedule_maker.tools.custom_tool import MyCustomTool
 
-# Check our tools documentations for more information on how to use them
-# from crewai_tools import SerperDevTool
+from crewai_tools import SerperDevTool, FileReadTool
+
 
 @CrewBase
 class ClassScheduleMakerCrew():
@@ -15,7 +14,7 @@ class ClassScheduleMakerCrew():
 	def curriculum_finder(self) -> Agent:
 		return Agent(
 			config=self.agents_config['curriculum_finder'],
-			# tools=[MyCustomTool()], # Example of custom tool, loaded on the beginning of file
+			tools=[SerperDevTool, FileReadTool],
 			verbose=True
 		)
 
@@ -23,6 +22,7 @@ class ClassScheduleMakerCrew():
 	def professor_finder(self) -> Agent:
 		return Agent(
 			config=self.agents_config['professor_finder'],
+			tools=[SerperDevTool],
 			verbose=True
 		)
 	

@@ -14,6 +14,7 @@ def run():
     inputs = {
         'major': 'Computer Science B.S.',
         'school': 'Rochester Institute of Technology',
+        'previous_classes': '/path/to/previous_classes.xlsx',
     }
     ClassScheduleMakerCrew().crew().kickoff(inputs=inputs)
 
