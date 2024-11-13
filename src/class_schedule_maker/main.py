@@ -12,7 +12,8 @@ def run():
     Run the crew.
     """
     inputs = {
-        'topic': 'AI LLMs'
+        'major': 'Computer Science B.S.',
+        'school': 'Rochester Institute of Technology',
     }
     ClassScheduleMakerCrew().crew().kickoff(inputs=inputs)
 
