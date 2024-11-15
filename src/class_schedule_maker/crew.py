@@ -1,8 +1,8 @@
 from crewai import Agent, Crew, Process, Task
 from crewai.project import CrewBase, agent, crew, task
 
-# from class_schedule_maker.tools.custom_tool import MyCustomTool
 
+from class_schedule_maker.tools.custom_tool import CalendarProcessingTool
 from crewai_tools import SerperDevTool, FileReadTool
 
 
@@ -14,7 +14,7 @@ class ClassScheduleMakerCrew():
 	def curriculum_finder(self) -> Agent:
 		return Agent(
 			config=self.agents_config['curriculum_finder'],
-			tools=[SerperDevTool, FileReadTool],
+			tools=[SerperDevTool(), FileReadTool()],
 			verbose=True
 		)
 
@@ -22,7 +22,7 @@ class ClassScheduleMakerCrew():
 	def professor_finder(self) -> Agent:
 		return Agent(
 			config=self.agents_config['professor_finder'],
-			tools=[SerperDevTool],
+			tools=[SerperDevTool()],
 			verbose=True
 		)
 	
@@ -30,6 +30,7 @@ class ClassScheduleMakerCrew():
 	def calendar_organizer(self) -> Agent:
 		return Agent(
 			config=self.agents_config['calendar_organizer'],
+			tools=[CalendarProcessingTool()],
 			verbose=True
 		)
 
