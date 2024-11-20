@@ -1,8 +1,5 @@
 from crewai import Agent, Crew, Process, Task
 from crewai.project import CrewBase, agent, crew, task
-
-
-from class_schedule_maker.tools.custom_tool import CalendarProcessingTool
 from crewai_tools import SerperDevTool, FileReadTool
 
 
@@ -30,7 +27,6 @@ class ClassScheduleMakerCrew():
 	def calendar_organizer(self) -> Agent:
 		return Agent(
 			config=self.agents_config['calendar_organizer'],
-			tools=[CalendarProcessingTool()],
 			verbose=True
 		)
 
@@ -51,7 +47,7 @@ class ClassScheduleMakerCrew():
 	def organize_calendar(self) -> Task:
 		return Task(
 			config=self.tasks_config['organize_calendar'],
-			# output_file='report.md'
+			output_file='report.md'
 		)
 
 	@crew

@@ -15,7 +15,6 @@ def run():
         'major': 'Computer Science B.S.',
         'school': 'Rochester Institute of Technology',
         'previous_classes': '../../previous_classes.xlsx',
-        'calendar': 'I go to the gym at 8am every day',
     }
     ClassScheduleMakerCrew().crew().kickoff(inputs=inputs)
 
